@@ -1,0 +1,36 @@
+<section class="section-recipe-detail">
+  <button (click)="backClicked()"> <i class="fas fa-arrow-left"></i>Voltar para Lista de Receitas</button>
+  <p *ngIf="isLoading">Carregando...</p>
+  <div *ngIf="!isLoading">
+    <div class="col span-1-of-2">
+      <div class="img-container">
+        <img *ngIf="recipe.imagePath" [src]="recipe.imagePath" alt="recipe.title">
+        <img *ngIf="!recipe.imagePath" src="https://i.imgur.com/8u3skSqb.png" alt="recipe.title">
+      </div>
+      <div>
+        <h4>Fonte da Receita</h4>
+        <p class="from-where"><a [href]="recipe.fromWhere">{{recipe.fromWhere}}</a></p>
+      </div>
+    </div>
+    <div class="col span-1-of-2">
+      <div class="info-container">
+        <h2 class="recipe-title">{{recipe.title}}<span class="type-of-recipe">({{recipe.typeOfRecipe | uppercase}})</span></h2>
+        <div>
+            <span class="restrictions" *ngIf="recipe.restrictions.glutenFree">Sem glúten</span>
+            <span class="restrictions" *ngIf="recipe.restrictions.noMilk">Sem Leite</span>
+            <span class="restrictions" *ngIf="recipe.restrictions.vegan">Vegana</span>
+        </div>
+        <h4>Ingredientes</h4>
+        <ul class="recipe-detail-ingredient-list">
+          <li *ngFor="let i of recipe.ingredients">
+            <div class="ingredient-item-list">
+                <p>{{i.amount}} {{i.measure}} de <strong>{{getIngredientName(i.ingredient_id)}}</strong> {{i.ingredient_mode}}</p>
+            </div>
+          </li>
+        </ul>
+        <h4>Modo de Fazer</h4>
+        <div class="how-to" [innerHTML]="recipe.description"></div>
+      </div>
+    </div>
+    </div>
+</section>

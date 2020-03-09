@@ -1,0 +1,79 @@
+<section *ngIf="ingredientsModified.length; else loading" class="search-bar-container">
+  <div *ngIf="showFilters" class="row filters">
+    <div class="col span-1-of-2">
+      <label for="filterRecipeType"><strong>Tipo de receita: </strong></label>
+      <select [(ngModel)]="searchTypeOfRecipe">
+        <option value="all">Todos</option>
+        <option value="acompanhamento">Acompanhamento</option>
+        <option value="refeição">Refeição</option>
+        <option value="sobremesa">Sobremesa</option>
+      </select>
+    </div>
+    <div class="col span-1-of-2">
+      <label><strong>Restrições:</strong></label>
+      <ul>
+        <li><input type="checkbox" [checked]="searchRestrictions.vegan" [(ngModel)]="searchRestrictions.vegan">Vegana</li>
+        <li><input type="checkbox" [checked]="searchRestrictions.glutenFree" [(ngModel)]="searchRestrictions.glutenFree">Sem Glúten</li>
+        <li><input type="checkbox" [checked]="searchRestrictions.noMilk" [(ngModel)]="searchRestrictions.noMilk">Sem Leite</li>
+      </ul>
+    </div>
+  </div>
+  <div class="row filter-ingredients">
+    <!-- <label for="filterIngredients"><strong>Encontre ingredientes: </strong></label> -->
+    <div class="filter-ingredients-search-field">
+      <i class="fas fa-search"></i>
+      <input type="text" id="filterIngredients" [(ngModel)]="searchText" placeholder="Encontre ingredientes...">
+    </div>
+    <a class="filter-toggle" (click)="onToggleFilters()">{{showFilters? '- Ocultar Filtros' : '+ Mostrar mais filtros'}}</a>
+  </div>
+  <div class="your-search">
+    <form [formGroup]="searchForm" (ngSubmit)="onSubmit()">
+      <div *ngIf="searchIngredients.length || searchRestrictions.vegan || searchRestrictions.glutenFree || searchRestrictions.noMilk || searchTypeOfRecipe != 'all'; else searchPlaceholder" class="card-search-terms">
+          <div class="col span-1-of-9 span-container"><span>Busca:</span></div>
+          <div class="col span-1-of-9" *ngIf="searchTypeOfRecipe != 'all'">
+              <!-- <span style="font-size: 10px">Tipo:</span> -->
+              <span class="restrictions">{{searchTypeOfRecipe | titlecase}}</span>
+            </div>
+          <div class="col span-1-of-9">
+            <!-- <span *ngIf="searchRestrictions.glutenFree || searchRestrictions.noMilk || searchRestrictions.vegan" style="font-size: 10px">Restrições:</span> -->
+            <span class="restrictions" *ngIf="searchRestrictions.glutenFree">Sem glúten</span>
+            <span class="restrictions" *ngIf="searchRestrictions.noMilk">Sem Leite</span>
+            <span class="restrictions" *ngIf="searchRestrictions.vegan">Vegana</span>
+          </div>
+          <div *ngIf="searchIngredients.length > 0; else pleaseSelectIngredients" class="col span-5-of-9">
+            <span class="search-tag" *ngFor="let ing of searchIngredients">{{ing.name}}</span>
+          </div>
+          <ng-template #pleaseSelectIngredients>
+            <div class="placeholder-text-container">
+              <p>Selecione ingredientes para fazer sua busca</p>
+            </div>
+          </ng-template>
+          <div class="button-container col span-1-of-9">
+            <button type="submit" class="search-button" [disabled]="searchIngredients.length<1">Buscar</button>
+            <a class="clear-link" (click)="onCleanSearch()"><i class="fas fa-times-circle"></i>Limpar Busca</a>
+          </div>
+      </div>
+      <ng-template #searchPlaceholder>
+          <div class="search-placeholder" *ngIf="!searchIngredients.length">
+            <p>Selecione ingredientes para fazer sua busca</p>
+          </div>
+      </ng-template>
+      <div class="item-list">
+        <ul>
+          <li *ngFor="let i of ingredientsModified | orderBy:'name':'ingredient' | filter: searchText" class="item">
+            <div *ngIf="i.numberOfRecipes>0" [ngClass]="{'checked-item': i.checkedStatus}">
+              <input  (change)="onSetSearch($event)" type="checkbox" [value]="i.ingredient._id" formControlName="ingredients" [checked]="i.checkedStatus"> <span>{{i.ingredient.name | lowercase}} <span class="number-of-recipes">({{i.numberOfRecipes}})</span></span>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </form>
+  </div>
+  <ng-template #loading>
+    <p style="text-align: center">Carregando...</p>
+  </ng-template>
+</section>
+<section>
+  <app-search-result></app-search-result>
+</section>
+

@@ -1,0 +1,35 @@
+/* ---- HEADINGS ---- */
+h3 {
+  text-align: center;
+  font-weight: 300;
+}
+
+/* ---- CLASSES ---- */
+
+.divider {
+  width:80%;
+  margin: 50px auto 40px auto;
+}
+
+.result-list-container {
+  width: 80%;
+  margin: 40px auto 0 auto;
+}
+
+.card-recipe {
+  margin: 15px auto;
+  padding: 10px;
+  /* border: 1px solid black; */
+  background: #e2b423;
+  border-radius: 5px;
+  box-shadow: 1px 1px 1px #ccc;
+}
+
+.not-found-text {
+  text-align: center;
+  background: #ffcccc;
+  padding: 10px;
+  border-radius: 5px;
+  margin: auto;
+  color: red;
+}

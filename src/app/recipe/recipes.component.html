@@ -1,0 +1,23 @@
+<h3>Gerenciar Receitas</h3>
+<button [routerLink]="['/recipes/new']" routerLinkActive="active" >Nova Receita</button>
+
+<h4>Todas as Receitas</h4>
+<label for="findRecipes">Encontre Receitas:</label>
+<input id="findRecipes" type="text" [(ngModel)]="searchText">
+<div *ngIf="recipes.length; else noResult">
+  <div class="card-recipe" *ngFor="let rec of recipes | orderBy:'title' | filterRecipes: searchText">
+    <h4>{{rec.title}}</h4>
+    <div innerHtml="{{rec.description}}"></div>
+    <ul>
+      <li *ngFor="let i of rec.ingredients">
+        <!-- <span>{{i.ingredient._id}}</span> -->
+        <app-ingredient-item [measure]="i.measure" [id]="i.ingredient_id" [amount]="i.amount" [mode]="i.ingredient_mode"></app-ingredient-item>
+      </li>
+    </ul>
+    <button (click)="onDeleteRecipe(rec._id)" style="background: lightcoral">Deletar Receita</button>
+    <button [routerLink]="[rec._id, 'edit']" style="background: lightblue">Editar Receita</button>
+  </div>
+</div>
+<ng-template #noResult>
+  <span>Não há receitas cadastradas</span>
+</ng-template>

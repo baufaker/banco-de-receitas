@@ -23,8 +23,8 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
-            ],
+              "src/grid.css",
+              "src/styles.css"],
             "scripts": [],
             "es5BrowserSupport": true
           },

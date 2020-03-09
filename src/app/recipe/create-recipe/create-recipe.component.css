@@ -1,0 +1,21 @@
+input.ng-touched.ng-invalid {
+  border: 1px solid red;
+}
+
+.warning {
+  color: red;
+}
+
+ input.ng-pending {
+  animation: blinker 1s linear infinite;
+}
+
+@keyframes blinker {
+  50% {
+    opacity: 0;
+  }
+}
+
+input[type='text'] {
+  width: 80px;
+}

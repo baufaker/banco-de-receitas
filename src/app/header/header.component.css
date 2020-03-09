@@ -1,0 +1,185 @@
+header.main-message {
+  padding: 15px 30px;
+  background-color: #d4d4d4;
+  background-image: linear-gradient(rgba(163, 87, 0, 0.9),rgba(163, 87, 0, 0.9)), url('../../assets/img/pexels-photo-1537166-2.jpeg');
+  background-size: cover;
+  background-attachment: fixed;
+  color: white;
+  background-position: 0px -170px;
+  height: 500px;
+}
+
+header.ordinary-header {
+  padding: 15px 30px;
+  background-image: linear-gradient(rgba(163, 87, 0, 0.9),rgba(163, 87, 0, 0.9)), url('../../assets/img/pexels-photo-1537166-2.jpeg');
+  background-size: cover;
+  background-attachment: fixed;
+  color: white;
+  background-position: 0px -170px;
+  height: 75px;
+}
+
+.logo i {
+  font-size: 180%;
+  margin-top: -5px;
+}
+
+header.ordinary-header a {
+  display: inline-block;
+  float: right;
+}
+
+header.ordinary-header ul {
+  list-style: none;
+}
+
+header.ordinary-header li {
+  float: right;
+}
+
+.nav-find-recipes p{
+  display: inline-block;
+  margin-right: 10px;
+}
+
+.nav-find-recipes a{
+  margin-top: -9px;
+}
+
+.logo a.no-styles-a {
+  float: none;
+  background: transparent;
+  padding: 0;
+  margin: 0;
+}
+
+a:link,
+a:visited {
+  padding: 10px 15px;
+  background-color: #4CAF50;
+  border-radius: 5px;
+  text-decoration: none;
+  color:white;
+  font-size: 90%;
+  transition: background-color 0.2s;
+}
+
+a.login-button {
+  background: transparent;
+}
+
+a.logout-button {
+  padding: 10px 15px;
+  background-color: #55412e;
+  border-radius: 5px;
+  text-decoration: none;
+  color:white;
+  font-size: 90%;
+  transition: background-color 0.2s;
+  cursor: pointer;
+}
+
+a.logout-button:hover {
+  background-color: #34281c;
+}
+
+a.login-button span {
+  border-bottom: 1px solid white;
+  padding-bottom: 2px;
+  transition: border-bottom 0.2s;
+}
+
+a.login-button span:hover {
+  border-bottom: 1px solid transparent;
+}
+
+a.signup-button:hover {
+  background-color: #3d8b40;
+  box-shadow: 1px 1px 1px #00000030;
+}
+
+button.admin-button {
+  padding: 10px 15px;
+  background-color: #ff7f07;
+  border-radius: 5px;
+  text-decoration: none;
+  color:white;
+  font-size: 90%;
+  transition: background-color 0.2s;
+  cursor: pointer;
+  font-weight: 300;
+  border:none;
+  margin-right: 10px;
+}
+
+button.admin-button:hover {
+  background-color: #d36600;
+}
+
+h1 {
+  font-size: 300%;
+  font-weight: 300;
+  display: inline-block;
+}
+
+.menu-nav {
+  float: right;
+  color: white;
+}
+
+.menu-nav li {
+  display: inline-block;
+  margin-left: 20px;
+}
+
+.menu-nav li:last-child {
+  margin-left: 0;
+}
+
+.menu-nav li:last-child a:link,
+.menu-nav li:last-child a:visited {
+  padding-left: 6px;
+}
+
+.main-text {
+  text-align: center;
+  margin-top: 90px;
+}
+
+.main-text i {
+  font-size: 230%;
+  margin-right: 20px;
+  vertical-align: middle;
+  margin-top: -32px;
+}
+
+.main-subtext {
+  width: 50%;
+  text-align: center;
+  margin: 40px auto;
+  font-weight: 100;
+  font-size: 140%;
+}
+
+.arrow-row {
+  text-align: center;
+  font-size: 150%;
+  position: relative;
+  height: 60px;
+}
+
+.fa-chevron-down {
+  animation: MoveUpDown 1s linear infinite;
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+}
+
+@keyframes MoveUpDown {
+  0%, 100% {
+    bottom: 0;
+  }
+  50% {
+    bottom: 30px;
+  }
+}

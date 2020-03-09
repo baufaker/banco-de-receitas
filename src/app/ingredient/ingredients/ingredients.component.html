@@ -1,0 +1,16 @@
+<h3>Gerenciar Ingredientes</h3>
+<button [routerLink]="['/ingredients/new']" routerLinkActive="active" >Cadastrar Novo Ingrediente</button>
+
+<h4>Todos os Ingredientes</h4>
+<label for="findIngredients">Encontre Ingredientes:</label>
+<input id="findIngredients" type="text" [(ngModel)]="searchText">
+<div *ngIf="ingredients.length; else noResult">
+  <div class="card-ingredient" *ngFor="let ing of ingredients | orderBy:'name' | orderBy: 'name' | filter:searchText">
+    <p>{{ing.name | lowercase}}</p>
+    <button (click)="onDeleteIngredient(ing._id)" style="background: lightcoral">Deletar Ingrediente</button>
+    <button [routerLink]="[ing._id ,'edit']" style="background: lightblue">Editar Ingrediente</button>
+  </div>
+</div>
+<ng-template #noResult>
+  <span>Não há receitas cadastradas</span>
+</ng-template>

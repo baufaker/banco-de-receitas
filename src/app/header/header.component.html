@@ -1,0 +1,44 @@
+<header *ngIf="currentRoute!=='/'" class="ordinary-header">
+  <div class="logo col span-1-of-6">
+      <a class="no-styles-a" [routerLink]="['/']">
+          <i class="fas fa-database"></i>
+      </a>
+  </div>
+  <div class="col span-5-of-6">
+    <ul class="nav-find-recipes">
+      <li *ngIf="loggedIn && userRole==='admin'"><button [routerLink]="['/admin/dashboard']" routerLinkActive="active" class="admin-button">Admin</button></li>
+      <li><p>Encontre receitas com os ingredientes que você tem em casa!</p> <a [routerLink]="['/']">Encontrar</a></li>
+      <!-- <li *ngIf="!loggedIn"><a [routerLink]="['/auth/signup']" routerLinkActive="active" >Cadastrar</a></li>
+      <li *ngIf="!loggedIn"><a [routerLink]="['/auth/login']" routerLinkActive="active" >Login</a></li>
+      <li *ngIf="loggedIn"><a (click)="onLogout()" >Logout</a></li> -->
+    </ul>
+  </div>
+</header>
+<header  *ngIf="currentRoute==='/'" class="main-message">
+  <div class="row">
+    <div class="col span-1-of-6">
+      <!-- OBDR -->
+    </div>
+    <div class="col span-5-of-6">
+      <ul class="menu-nav">
+          <li *ngIf="loggedIn && userRole==='admin'"><button [routerLink]="['/admin/dashboard']" routerLinkActive="active" class="admin-button">Admin Dashboard</button></li>
+          <li *ngIf="!loggedIn"><a [routerLink]="['/auth/signup']" routerLinkActive="active" class="signup-button">Cadastrar</a></li>
+          <li *ngIf="!loggedIn"><a [routerLink]="['/auth/login']" routerLinkActive="active" class="login-button">ou <span>fazer login</span></a></li>
+          <li *ngIf="loggedIn"><a (click)="onLogout()" class="logout-button">Logout</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="row main-text">
+    <i class="fas fa-database"></i>
+    <h1>Banco de Receitas</h1>
+  </div>
+  <div class="row main-subtext">
+    <p>Selecione os ingredientes que você tem em casa para encontrar receitas!</p>
+  </div>
+  <div class="row arrow-row">
+      <i class="fas fa-chevron-down"></i>
+  </div>
+  <!-- <span><strong>{{recipeCount}}</strong> Receitas Cadastradas</span> -->
+</header>
+<br>
+<br>

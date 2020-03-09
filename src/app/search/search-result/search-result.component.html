@@ -1,0 +1,18 @@
+<section class="section-result">
+  <hr *ngIf="foundRecipes.length" class="divider">
+  <h3 *ngIf="foundRecipes.length && isResult && !showAllRecipes; else allRecipesTitle">Resultado da Busca</h3>
+  <ng-template #allRecipesTitle>
+    <h3 *ngIf="foundRecipes.length">Todas as Receitas</h3>
+  </ng-template>
+  <div *ngIf="foundRecipes.length; else noResult" class="result-list-container">
+    <div *ngFor="let rec of foundRecipes">
+      <app-recipe-preview [recipe]="rec"></app-recipe-preview>
+    </div>
+  </div>
+  <ng-template #noResult>
+    <div class="not-found-text" *ngIf="isResult && !isLoading">
+      <p>Não encontramos receitas com as suas especificações</p>
+    </div>
+    <p *ngIf="!isResult && !isLoading">Escolha ingredientes para encontrar receitas</p>
+  </ng-template>
+</section>

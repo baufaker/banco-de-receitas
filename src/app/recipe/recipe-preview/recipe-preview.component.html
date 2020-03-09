@@ -1,0 +1,19 @@
+<!-- [routerLink]="['recipes',recipe._id]" -->
+<a (click)="onRedirectUserToRecipe()" >
+  <div class="card-recipe">
+    <div class="col span-1-of-7 img-container">
+      <img *ngIf="recipe.imagePath" [src]="recipe.imagePath" alt="">
+      <img *ngIf="!recipe.imagePath" src="https://i.imgur.com/8u3skSqb.png" alt="">
+    </div>
+    <div class="col span-6-of-7 width-correction">
+      <h3>{{recipe.title}}<span class="type-of-recipe">({{recipe.typeOfRecipe | uppercase}})</span>
+        <span class="restrictions" *ngIf="recipe.restrictions.glutenFree">Sem glúten</span>
+        <span class="restrictions" *ngIf="recipe.restrictions.noMilk">Sem Leite</span>
+        <span class="restrictions" *ngIf="recipe.restrictions.vegan">Vegana</span></h3>
+      <!-- <p style="font-size: 12px">Ingredientes:</p> -->
+      <div class="ingredient-names-container">
+        <span *ngFor="let i of ingredientNames" class="ingredient-names">{{i}}</span>
+      </div>
+    </div>
+  </div>
+</a>

@@ -1,0 +1,8 @@
+<form [formGroup]="newIngredientForm" (ngSubmit)="onSubmit()">
+  <div>
+    <label for="ingredientName">Nome do Ingrediente</label>
+    <input name='ingredientName' type="text" formControlName="name">
+  </div>
+  <button *ngIf="!editMode" type="submit">Criar</button>
+  <button *ngIf="editMode" type="submit">Editar</button>
+</form>

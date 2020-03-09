@@ -1,0 +1,23 @@
+<section class="section-login">
+    <form [formGroup]="signupForm" (ngSubmit)="onSignup()">
+      <div class="row email">
+        <div class="col span-1-of-3">
+          <label for="email">Email</label>
+        </div>
+        <div class="col span-2-of-3">
+          <input type="email" name="email" formControlName="email" placeholder="exemplo@seuemail.com">
+        </div>
+      </div>
+      <div class="row password">
+          <div class="col span-1-of-3">
+            <label for="password">Senha</label>
+          </div>
+          <div class="col span-2-of-3">
+            <input type="password" name="password" formControlName="password" placeholder="*********">
+          </div>
+      </div>
+      <div class="row button-row">
+        <button>Cadastrar</button>
+      </div>
+    </form>
+  </section>

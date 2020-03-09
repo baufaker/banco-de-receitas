@@ -1,0 +1,66 @@
+<button (click)="backClicked()"> Voltar para Lista de Receitas</button>
+<form [formGroup]="createRecipeForm" (ngSubmit)="onSubmit()">
+    <div>
+      <label for="recipeTitle">Título da Receita</label>
+      <input name='recipeTitle' type="text" formControlName="title">
+    </div>
+    <div>
+      <label for="recipeDescription">Descrição</label>
+      <!-- <textarea formControlName="description" name="recipeDescription" id="recipeDescription" rows="4"></textarea> -->
+      <ckeditor name="recipeDescription" (change)="onEditorChange($event)" [editor]="Editor" data="{{editorData}}"></ckeditor>
+    </div>
+    <div>
+      <label for="typeOfRecipe">Tipo da receita</label>
+      <select name="typeOfRecipe" id="typeOfRecipe" formControlName="typeOfRecipe">
+          <option value="acompanhamento">Acompanhamento</option>
+          <option value="refeição">Refeição</option>
+          <option value="sobremesa">Sobremesa</option>
+      </select>
+    </div>
+    <div>
+      <label>Restrições</label>
+      <ul formGroupName="restrictions">
+        <li>
+            <input type="checkbox" value="vegana" formControlName="vegan">Vegana
+        </li>
+        <li>
+            <input type="checkbox" value="sem glúten" formControlName="glutenFree">Sem Glúten
+        </li>
+        <li>
+            <input type="checkbox" value="sem leite" formControlName="noMilk">Sem Leite
+        </li>
+      </ul>
+    </div>
+    <div>
+      <button type="button" style="cursor: pointer;" (click)="onAddIngredient()">+ Adicionar Ingrediente</button>
+    </div>
+    <div
+      formArrayName="ingredients"
+      class="form-group">
+      <div
+        *ngFor="let ingredient of createRecipeForm.get('ingredients')['controls']; let i = index"
+        [formGroupName]="i">
+        <label for="ingredientSelect">Ingrediente</label>
+        <select name="ingredientSelect" formControlName="ingredient_id">
+          <option *ngFor="let ingr of ingredients" [value]="ingr._id">{{ingr.name}}</option>
+        </select>
+        <label for="ingMode">Modo(fatiado, picado, etc)-opcional</label>
+        <input name="ingMode" class="form-control" type="text" formControlName="mode">
+        <label for="ingMeasure">Medida(g, ml, xíc, etc)</label>
+        <input name="ingMeasure" class="form-control" type="text" formControlName="measure">
+        <label for="ingAmount">Quantidade</label>
+        <input name="ingAmount" class="form-control" type="text" formControlName="amount">
+        <button class="btn btn-danger" type="button" (click)="onDeleteIngredient(i)">X</button>
+      </div>
+    </div>
+    <div>
+      <label for="fromWhere">Fonte da Receita</label>
+      <input name="fromWhere" class="form-control" type="text" formControlName="fromWhere">
+    </div>
+    <div>
+      <label for="imagePath">URL da foto da receita</label>
+      <input name="imagePath" class="form-control" type="text" formControlName="imagePath">
+    </div>
+    <button type="submit" [disabled]="!createRecipeForm.valid" *ngIf="!editMode">Cadastrar Receita</button>
+    <button type="submit" [disabled]="!createRecipeForm.valid" *ngIf="editMode">Editar Receita</button>
+  </form>
